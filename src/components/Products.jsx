@@ -14,7 +14,7 @@ const products = [
   },
   {
     id: '2',
-    name: 'Healix Gold',
+    name: 'Healix Gold', 
     price: 79.99,
     image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600',
     description: 'Compact and portable solution for on-the-go relief',
