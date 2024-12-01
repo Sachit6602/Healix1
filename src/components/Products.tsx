@@ -1,27 +1,28 @@
+// src/components/Products.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ShoppingCart } from 'lucide-react';
-import { useStore } from '../store/useStore';
+import { useCart } from '../store/CartContext'; // Replacing useStore with useCart
 
 const products = [
   {
     id: '1',
-    name: 'Healix Pro',
+    name: 'Healix Black',
     price: 129.99,
     image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600',
     description: 'Premium diffuser with advanced aromatherapy technology',
   },
   {
     id: '2',
-    name: 'Healix Mini',
+    name: 'Healix Gold',
     price: 79.99,
     image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600',
     description: 'Compact and portable solution for on-the-go relief',
   },
   {
     id: '3',
-    name: 'Healix Essential Oils Pack',
+    name: 'Healix Platinum',
     price: 49.99,
     image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600',
     description: 'Curated selection of premium essential oils',
@@ -29,11 +30,16 @@ const products = [
 ];
 
 export default function Products() {
-  const { addToCart } = useStore();
+  const { dispatch } = useCart(); // Using CartContext to manage cart
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const handleAddToCart = (product) => {
+    dispatch({ type: 'ADD_TO_CART', payload: product });
+  };
 
   return (
     <section id="products" className="py-24 bg-white">
@@ -58,7 +64,7 @@ export default function Products() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden"
+              className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300"
             >
               <div className="relative h-64">
                 <img
@@ -71,11 +77,11 @@ export default function Products() {
                 <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
                 <p className="text-gray-600 mb-4">{product.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold">${product.price}</span>
+                  <span className="text-2xl font-bold">₹{product.price}</span>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => addToCart(product)}
+                    onClick={() => handleAddToCart(product)}
                     className="flex items-center space-x-2 px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors"
                   >
                     <ShoppingCart className="h-5 w-5" />
