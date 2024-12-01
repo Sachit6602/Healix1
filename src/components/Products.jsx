@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ShoppingCart } from 'lucide-react';
 import { useStore } from '../store/useStore';
+import { useCart } from '../store/CartContext';
 
 const products = [
   {

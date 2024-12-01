@@ -1,0 +1,26 @@
+// src/components/Checkout.jsx
+import React from 'react';
+import { useCart } from '../store/CartContext';
+import Payment from './Payment';
+
+const Checkout = () => {
+  const { cart } = useCart();
+  const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+
+  return (
+    <div className="checkout">
+      <h1>Checkout</h1>
+      <ul>
+        {cart.map((item) => (
+          <li key={item.id}>
+            {item.name} - ₹{item.price}
+          </li>
+        ))}
+      </ul>
+      <h2>Total: ₹{totalAmount}</h2>
+      <Payment totalAmount={totalAmount} />
+    </div>
+  );
+};
+
+export default Checkout;
