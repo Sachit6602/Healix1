@@ -7,18 +7,18 @@ import { HealixPro, HealixMini, EssentialOils } from './3DModels';
 
 const models = [
   { 
-    component: HealixPro, 
-    name: 'Healix Pro',
+    component: HealixBlack, 
+    name: 'Healix Black',
     productId: '1'
   },
   { 
-    component: HealixMini, 
-    name: 'Healix Mini',
+    component: HealixGold, 
+    name: 'Healix Gold',
     productId: '2'
   },
   { 
-    component: EssentialOils, 
-    name: 'Essential Oils Pack',
+    component: HealixPlatinum, 
+    name: 'Healix Platinum',
     productId: '3'
   }
 ];
