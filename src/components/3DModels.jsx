@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { MeshDistortMaterial } from '@react-three/drei';
 
 export const HealixPro = ({ onClick }) => {
-  const meshRef = React.useRef(null);
+  const meshRef = React.useRef(null); 
 
   useFrame((state) => {
     if (meshRef.current) {
